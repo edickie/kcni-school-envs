@@ -33,19 +33,11 @@ Then open your browser and navigate to: http://localhost:8787/ and you should se
 Building the env (this may only need to be done by the instructor)
 
 ```sh
-docker build -t neuron-py:v0.0 -t neuron-py:latest .  
+docker build -t jupyter-neuron:v0.0 -t jupyter-neuron:latest .  
 ```
 
 Running the env
 
 ```sh
-docker run --rm -p 8888:8888 -v C:\Users\erin_dickie\data\kcni-school-data\:/home/neuro/kcni-school-data neuron-py:latest
-```
-
-### new try - the neurodocker version is chunky and I can't get the neuron install inside - so now I'm gonna try miniconda3/jyputer as the base layer..
-
-```sh
-docker pull continuumio/miniconda3
-docker run -i -t continuumio/miniconda3 /bin/bash
-docker run -i -t -p 8888:8888 continuumio/miniconda3 /bin/bash -c "/opt/conda/bin/conda install jupyter -y --quiet && mkdir /opt/notebooks && /opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser"
+docker run --rm -p 8888:8888 -v C:\Users\erin_dickie\data\kcni-school-data\:/home/neuro/kcni-school-data jupyter-neuron:latest
 ```

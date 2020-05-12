@@ -1,27 +1,20 @@
 FROM rocker/tidyverse:3.6.3
 
-# Installation instructions: http://pngu.mgh.harvard.edu/~purcell/plink/download.shtml#latest
-# the plink installation matches https://github.com/GELOG/plink/blob/v1.07/plink-1.07-bin/docker/Dockerfile
+# Installation instructions: https://www.cog-genomics.org/plink2
+# copied from https://github.com/GELOG/plink/blob/master/plink-2.0-bin/docker/Dockerfile
 
 # Environment variables
-ENV PLINK_VERSION       1.07
+# 150314 == plink 1.9 beta 3 ???
+ENV PLINK_VERSION       150314
 ENV PLINK_HOME          /usr/local/plink
 ENV PATH                $PLINK_HOME:$PATH
 
-
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y unzip wget && \
-    wget http://zzz.bwh.harvard.edu/plink/dist/plink-$PLINK_VERSION-x86_64.zip && \
-    unzip plink-$PLINK_VERSION-x86_64.zip -d /usr/local/ && \
-    rm plink-$PLINK_VERSION-x86_64.zip && \
-    cd /usr/local && \
-    ln -s plink-$PLINK_VERSION-x86_64 $PLINK_HOME
-
-# WORKAROUND: plink hangs if not started with '--noweb' option
-# See issue #1
-RUN echo '#!/bin/bash'                                                 > /usr/local/bin/plink && \
-    echo '#Launch the real plink script forcing the --noweb argument' >> /usr/local/bin/plink && \
-    echo '/usr/local/plink/plink --noweb "$@"'                        >> /usr/local/bin/plink && \
-    chmod a+x /usr/local/bin/plink
+    wget http://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20200428.zip && \
+    unzip plink_linux_x86_64_20200428.zip -d $PLINK_HOME && \
+    rm plink_linux_x86_64_20200428.zip && \
+    DEBIAN_FRONTEND=noninteractive apt-get autoremove -y unzip wget && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN install2.r --error \
     --deps TRUE \
