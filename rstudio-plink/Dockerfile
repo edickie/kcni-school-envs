@@ -30,3 +30,24 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     latticeExtra \
     Hmisc \
     rms
+
+# now for the PRSice install
+# Environment variables
+ENV PRSice_VERSION     2.3.0
+ENV PRSice_HOME        /usr/local/pipeline
+ENV PATH               $PRSice_HOME:$PATH
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y unzip wget && \
+    wget https://github.com/choishingwan/PRSice/releases/download/2.3.0/PRSice_linux.zip && \
+    unzip PRSice_linux.zip -d $PRSice_HOME && \
+    rm PRSice_linux.zip && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update -qq && apt-get -y --no-install-recommends install \
+    libjpeg-dev && \
+    install2.r --error \
+    --deps TRUE \
+    optparse 
+
+RUN echo "export PATH=$PLINK_HOME:$PATH" >> /home/rstudio/.bashrc
+RUN echo "export PATH=$PRSice_HOME:$PATH" >> /home/rstudio/.bashrc
