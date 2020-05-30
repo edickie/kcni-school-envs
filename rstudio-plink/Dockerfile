@@ -33,21 +33,21 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 
 # now for the PRSice install
 # Environment variables
-ENV PRSice_VERSION     2.3.0
+ENV PRSice_VERSION     2.3.1.e
 ENV PRSice_HOME        /usr/local/pipeline
 ENV PATH               $PRSice_HOME:$PATH
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y unzip wget && \
-    wget https://github.com/choishingwan/PRSice/releases/download/2.3.0/PRSice_linux.zip && \
-    unzip PRSice_linux.zip -d $PRSice_HOME && \
-    rm PRSice_linux.zip && \
+    wget https://github.com/choishingwan/PRSice/releases/download/2.3.1/PRSice_linux.231e.zip && \
+    unzip PRSice_linux.231e.zip -d $PRSice_HOME && \
+    rm PRSice_linux.231e.zip && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     libjpeg-dev && \
     install2.r --error \
     --deps TRUE \
-    optparse 
+    optparse
 
 RUN echo "export PATH=$PLINK_HOME:$PATH" >> /home/rstudio/.bashrc
 RUN echo "export PATH=$PRSice_HOME:$PATH" >> /home/rstudio/.bashrc
