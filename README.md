@@ -86,7 +86,7 @@ Building it manually (should only need to do this when editing as an instructor)
 
 ```sh
 cd rstudio-plink
-docker build -t rstudio-plink:v04 -t rstudio-plink:latest .  
+docker build -t rstudio-plink:v06 -t rstudio-plink:latest .  
 ```
 
 Running the container (from local build)

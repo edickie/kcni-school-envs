@@ -51,3 +51,30 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 
 RUN echo "export PATH=$PLINK_HOME:$PATH" >> /home/rstudio/.bashrc
 RUN echo "export PATH=$PRSice_HOME:$PATH" >> /home/rstudio/.bashrc
+
+######## adding extra r-packages for days 2 and 5 scripts
+
+
+## adding download tools and CRAN R packages
+RUN apt-get update -qq && apt-get -y --no-install-recommends install \
+    wget curl git && \
+    install2.r --error --skipinstalled \
+    here \
+    broom \
+    cowplot
+
+# use devtools to install markerGeneProfile
+RUN R -e 'remotes::install_github("oganm/markerGeneProfile", force = T, upgrade = "never")' \
+  && R -e 'remotes::install_github("oganm/ogbox", upgrade = "never")' \
+  && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
+
+# use Bioconductor/BiocManager to install edgeR and DESeq2 GEOquery
+RUN  R -e 'BiocManager::install("edgeR", update = FALSE)' \
+  && R -e 'BiocManager::install("DESeq2", update = FALSE)' \
+  && R -e 'BiocManager::install("GEOquery", update = FALSE)'
+
+# installing SNF - it appears to be a monster..
+RUN apt-get update -qq && apt-get -y --no-install-recommends install \
+    wget curl git && \
+    install2.r --error \
+    SNFtool \
