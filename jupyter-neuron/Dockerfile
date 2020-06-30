@@ -29,6 +29,7 @@ RUN conda install -y -q \
            "numpy" \
            "scipy" \
            "matplotlib" \
+	   "pandas" \
            "pytest" \
            "seaborn" \
            "Cython" \
@@ -36,7 +37,8 @@ RUN conda install -y -q \
     && sync && conda clean --all && sync \
     && pip install --no-cache-dir  \
              "nilearn" \
-             "tvb-framework" \
+             "tvb-library" \
+	     "tvb-data" \
              "mne" \
              "LFPy" \
     && rm -rf ~/.cache/pip/*
