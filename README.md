@@ -13,7 +13,7 @@ To install Docker follow the instructions at: https://www.docker.com/products/do
 
 You may need to configure file sharing with Docker using Docker Desktop. More on this below.
 
-### Running the R and genomics environment
+### Running the R and genomics environment (first time)
 
 To start the R and genomics environment. Open up a terminal (in Windows this is PowerShell). And type:
 
@@ -37,13 +37,8 @@ docker run --rm \
  edickie/kcnischool-rstudio:latest
 ```
 
-The first time you run this - you should see a lot of things happening. Because Docker will first download the docker image or the software you need (~3G) then start up the environment. The "docker image" or the software will be saved to your computer, so the next time you run this it will be faster.
+The first time you run this - you should see a lot of things happening. Because Docker will first download the docker image or the software you need (~3G) then start up the environment. 
 
-Note: on window's powershell the `\` character doesn't work - so the link above needs to be all on one line..
-
-```sh
-docker run --rm -p 127.0.0.1:8787:8787 -e DISABLE_AUTH=true -v C:\Users\erin_dickie\data\kcni-school-data\:/home/rstudio/kcni-school-data edickie/kcnischool-rstudio:latest
-```
 
 When things calm down - you should see a message that "server" has start. It should end with `[services.d] done.`
 
@@ -65,6 +60,15 @@ Skipping authentication as requested
 [services.d] done.
 ```
 That means it worked! Then open your browser and navigate to: http://localhost:8787/ and you should see your rstudio terminal!
+
+### Running the R and genomics environment (nth time)
+The "docker image" or the software will be saved to your computer, so the next time you run this it will be faster.
+
+Note: on window's powershell the `\` character doesn't work - so the link above needs to be all on one line..
+
+```sh
+docker run --rm -p 127.0.0.1:8787:8787 -e DISABLE_AUTH=true -v <path/to/your/data>:/home/rstudio/kcni-school-data edickie/kcnischool-rstudio:latest
+```
 
 #### If you get an error about space access..
 
