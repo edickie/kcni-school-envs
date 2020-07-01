@@ -26,7 +26,7 @@ To download and install the software. When you run this - you should see a lot o
 docker pull edickie/kcnischool-rstudio:latest
 ```
 
-To run the system  - Remember to replace `<path/to/you/data>` with a location on your computer where you will be storing you KCNI school data)
+To run the system  - Remember to replace `<path/to/you/data>` with a location on your computer where you will be storing you KCNI school data. You may need to tell docker explicitly that it can access this file location on your computer.
 
 ```sh
 ## this runs the container
