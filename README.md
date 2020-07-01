@@ -31,7 +31,7 @@ To run the system  - Remember to replace `<path/to/you/data>` with a location on
 ```sh
 ## this runs the container
 docker run --rm \
- -p 8787:8787 \
+ -p 127.0.0.1:8787:8787 \
  -e DISABLE_AUTH=true \
  -v <path/to/your/data>:/home/rstudio/kcni-school-data \
  edickie/kcnischool-rstudio:latest
@@ -59,7 +59,9 @@ Skipping authentication as requested
 [services.d] starting services
 [services.d] done.
 ```
-That means it worked! Then open your browser and navigate to: http://localhost:8787/ and you should see your rstudio terminal! If you get connection refused try http://192.168.99.100:8787/ as that might be the IP of the default docker machine for a Mac. 
+That means it worked! Then open your browser and navigate to: http://localhost:8787/ and you should see your rstudio terminal! 
+
+Troubleshotting on a Mac - If you get connection refused try removing the IP address in "-p 127.0.0.1:8787:8787" to get "-p 8787:8787" then log into http://192.168.99.100:8787/ as that might be the IP of the default docker machine. 
 
 ### Running the R and genomics environment (nth time)
 The "docker image" or the software will be saved to your computer, so the next time you run this it will be faster.
