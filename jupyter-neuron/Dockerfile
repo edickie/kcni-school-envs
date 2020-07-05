@@ -24,5 +24,8 @@ RUN conda install lfpy neuron=*=mpi*
 ## adding jupyter
 RUN conda install jupyter
 
+## adding compilation tools for lfpy
+RUN conda install git make gxx_linux-64
+
 ## this guy actually starts the jupyter notebook
 CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
