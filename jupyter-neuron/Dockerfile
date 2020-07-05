@@ -40,15 +40,11 @@ RUN conda install -y -q \
              "tvb-library" \
 	     "tvb-data" \
              "mne" \
-             "LFPy" \
     && rm -rf ~/.cache/pip/*
 
-RUN curl -fsSL --retry 5 -o /tmp/nrn-7.7.deb https://neuron.yale.edu/ftp/neuron/versions/v7.7/nrn-7.7.x86_64-linux.deb \
-    && dpkg -i /tmp/nrn-7.7.deb \
-    && rm /tmp/nrn-7.7.deb \
-    && echo "export PATH=$PATH:/usr/local/nrn/x86_64/bin" >> .bashrc
-
-RUN pip install neuron
+# Neuron and lfp installatin
+RUN conda config --add channels conda-forge
+RUN conda install lfpy neuron=*=mpi*
 
 ## adding jupyter
 RUN conda install jupyter
