@@ -15,6 +15,8 @@ RUN conda install -y -q \
              "tvb-library" \
 	     "tvb-data" \
              "mne" \
+	     "moviepy" \
+	     "fooof" \
     && rm -rf ~/.cache/pip/*
 
 # Neuron and lfpy installation
