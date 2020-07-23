@@ -37,7 +37,7 @@ docker run --rm \
  edickie/kcnischool-rstudio:latest
 ```
 
-The first time you run this - you should see a lot of things happening. Because Docker will first download the docker image or the software you need (~3G) then start up the environment. 
+The first time you run this - you should see a lot of things happening. Because Docker will first download the docker image or the software you need (~3G) then start up the environment.
 
 
 When things calm down - you should see a message that "server" has start. It should end with `[services.d] done.`
@@ -59,9 +59,9 @@ Skipping authentication as requested
 [services.d] starting services
 [services.d] done.
 ```
-That means it worked! Then open your browser and navigate to: http://localhost:8787/ and you should see your rstudio terminal! 
+That means it worked! Then open your browser and navigate to: http://localhost:8787/ and you should see your rstudio terminal!
 
-Troubleshotting on a Mac - If you get connection refused try removing the IP address in "-p 127.0.0.1:8787:8787" to get "-p 8787:8787" then log into http://192.168.99.100:8787/ as that might be the IP of the default docker machine. 
+Troubleshotting on a Mac - If you get connection refused try removing the IP address in "-p 127.0.0.1:8787:8787" to get "-p 8787:8787" then log into http://192.168.99.100:8787/ as that might be the IP of the default docker machine.
 
 ### Running the R and genomics environment (nth time)
 The "docker image" or the software will be saved to your computer, so the next time you run this it will be faster.
@@ -159,7 +159,7 @@ Building it manually (should only need to do this when editing as an instructor)
 
 ```sh
 cd rstudio-plink
-docker build -t rstudio-plink:v06 -t rstudio-plink:latest .  
+docker build -t rstudio-plink:v07 -t rstudio-plink:latest .  
 ```
 
 Running the container (from local build)
@@ -175,7 +175,7 @@ docker run --rm \
 Note: on window's powershell the `\` character doesn't work - so the link above needs to be all on one line..
 
 ```sh
-docker run --rm -p 127.0.0.1:8787:8787 -e DISABLE_AUTH=true -v C:\Users\erin_dickie\data\kcni-school-data\:/home/rstudio/kcni-school-data rstudio-plink:latest
+docker run --rm -p 127.0.0.1:8787:8787 -e DISABLE_AUTH=true -v C:\Users\erin_dickie\data\kcni-school-data1\:/home/rstudio/kcni-school-data rstudio-plink:v08
 ```
 
 Then open your browser and navigate to: http://localhost:8787/ and you should see your rstudio terminal!
@@ -185,7 +185,7 @@ Then open your browser and navigate to: http://localhost:8787/ and you should se
 Building the env (this may only need to be done by the instructor)
 
 ```sh
-docker build -t jupyter-neuron:v0.0 -t jupyter-neuron:latest .  
+docker build -t jupyter-neuron:v0.1 -t jupyter-neuron:latest .
 ```
 
 Running the env

@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:3.6.3
+FROM rocker/verse:3.6.3
 
 # Installation instructions: https://www.cog-genomics.org/plink2
 # copied from https://github.com/GELOG/plink/blob/master/plink-2.0-bin/docker/Dockerfile
@@ -75,6 +75,6 @@ RUN  R -e 'BiocManager::install("edgeR", update = FALSE)' \
 
 # installing SNF - it appears to be a monster..
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
-    wget curl git && \
+    wget curl git nano && \
     install2.r --error \
-    SNFtool \
+    SNFtool 
