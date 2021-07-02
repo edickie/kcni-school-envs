@@ -29,5 +29,11 @@ RUN conda install jupyter
 ## adding compilation tools for lfpy
 RUN conda install git make gxx_linux-64
 
+## adding datalad layer
+RUN conda install datalad
+
+## trying to change workdir
+WORKDIR /home/neuro
+
 ## this guy actually starts the jupyter notebook
 CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
