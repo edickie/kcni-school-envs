@@ -32,6 +32,20 @@ RUN conda install git make gxx_linux-64
 ## adding datalad layer
 RUN conda install datalad
 
+## adding dipy
+RUN conda install dipy 
+RUN pip install nilearn>=0.7
+
+## installing wb_command
+RUN apt-get update -qq && apt-get -y --no-install-recommends install libglu1 libgomp1 unzip\
+  && wget https://www.humanconnectome.org/storage/app/media/workbench/workbench-linux64-v1.5.0.zip \
+  && mkdir /content \
+  && unzip workbench-linux64-v1.5.0.zip \
+  && mv workbench /content/ \
+  && rm workbench-linux64-v1.5.0.zip
+
+ENV PATH        /content/workbench/bin_linux64/:$PATH
+
 ## trying to change workdir
 WORKDIR /home/neuro
 
