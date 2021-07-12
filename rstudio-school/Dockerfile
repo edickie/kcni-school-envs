@@ -51,6 +51,14 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     install2.r --error \
     SNFtool
 
+## install stuff at the end of Dan's script
+RUN install2.r --error --deps TRUE \
+    sna \ 
+    network \
+    ggnetwork \ 
+    ggsci \
+    reshape2
+
 # # adding day 2 ethics plyr depency - might go away
 # RUN install2.r --error \
 #     --deps TRUE \

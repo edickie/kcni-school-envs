@@ -46,6 +46,8 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install libglu1 lib
 
 ENV PATH        /content/workbench/bin_linux64/:$PATH
 
+RUN pip install synapseclient HTSeq
+
 ## trying to change workdir
 WORKDIR /home/neuro
 
